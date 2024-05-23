@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KeyDown</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .container {
+        max-width: fit-content;
+        width: 80%;
+        padding: 10px;
+        border: 2px solid black;
+        font-size: 30px;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .container span {
+        background-color: black;
+        color: white;
+        text-align: center;
+        min-width: 50px;
+        width: fit-content;
+        min-height: 50px;
+        /* box-shadow: 0px 0px 2px 2px black; */
+        padding: 5px 10px;
+        border: 2px solid grey;
+        border-radius: 5px;
+      }
+      .display {
+        padding: 10px;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        font-size: 50px;
+        color: rgb(37, 199, 37);
+        text-shadow: 0px 0px 3px rgb(7, 92, 7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">Please Press any Key</div>
+    <p class="hid">*Combination Key (Ctrl+Z, etc) supported</p>
+    <div class="display"></div>
+    <script>
+      var audio = new Audio("audio.mp3");
+      document.addEventListener("keypress", (e) => {
+        audio.playbackRate = 1.5; // Set the desired speed
+        audio.play();
+        val = "";
+        audio.play();
+        console.log(e);
+        if (e.ctrlKey) val += "<span>Ctrl</span> +";
+        if (e.altKey) val += "<span>Alt</span> +";
+        if (e.shiftKey) val += "<span>Shift</span> +";
+        document.querySelector(".display").innerHTML = e.charCode;
+        document.querySelector(".hid").style.display = "none";
+        document.querySelector(".container").innerHTML = `You pressed: ${
+          val + " " + "<span>" + e.code.replace("Key", "") + "</span>"
+        } `;
+      });
+    </script>
+  </body>
+</html>
